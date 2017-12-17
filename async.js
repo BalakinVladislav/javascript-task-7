@@ -41,6 +41,6 @@ function runParallel(jobs, parallelNum, timeout = 1000) {
 
         jobs
             .slice(0, parallelNum)
-            .map(job => doJob(job, jobsDone++));
+            .forEach(job => doJob(job, jobsDone++));
     });
 }
