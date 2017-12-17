@@ -1,6 +1,6 @@
 'use strict';
 
-exports.isStar = false;
+exports.isStar = true;
 exports.runParallel = runParallel;
 
 /** Функция паралелльно запускает указанное число промисов
@@ -25,7 +25,7 @@ function runParallel(jobs, parallelNum, timeout = 1000) {
             Promise.race([
                 job(),
                 new Promise(reject => setTimeout(reject, timeout, new Error('Promise timeout')))])
-                .then(current);
+                .then(current, current);
         }
 
         function addResult(result, num) {
