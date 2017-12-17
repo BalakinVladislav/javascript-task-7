@@ -13,8 +13,7 @@ exports.runParallel = runParallel;
 function runParallel(jobs, parallelNum, timeout = 1000) {
     // асинхронная магия
     return new Promise(resolve => {
-        jobs.slice(0, parallelNum);
-        if (jobs === []) {
+        if (jobs === [] || parallelNum <= 0) {
             resolve([]);
         }
 
@@ -41,6 +40,7 @@ function runParallel(jobs, parallelNum, timeout = 1000) {
         }
 
         jobs
+            .slice(0, parallelNum)
             .map(job => doJob(job, jobsDone++));
     });
 }
