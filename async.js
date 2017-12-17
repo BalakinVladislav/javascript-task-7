@@ -13,7 +13,8 @@ exports.runParallel = runParallel;
 function runParallel(jobs, parallelNum, timeout = 1000) {
     // асинхронная магия
     return new Promise(resolve => {
-        if (jobs === [] || parallelNum <= 0) {
+        jobs = Array.isArray(jobs) ? jobs : [];
+        if (jobs.length === 0 || parallelNum <= 0) {
             resolve([]);
         }
 
